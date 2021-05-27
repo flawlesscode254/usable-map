@@ -6,7 +6,6 @@ import './App.css'
 
 function Use({ latitude, longitude}) {
     const [name, setName] = useState('')
-    const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
     const [plate, setPlate] = useState('')
     const [pin, setPin] = useState('')
@@ -17,7 +16,6 @@ function Use({ latitude, longitude}) {
         event.preventDefault();
         db.collection('orders').add({
           name: name,
-          email: email,
           phone: phone,
           plate: plate,
           pin: pin,
@@ -25,7 +23,6 @@ function Use({ latitude, longitude}) {
         })
         .then(
           setName(''),
-          setEmail(''),
           setPhone(''),
           setPlate(''),
           setPin(''),
@@ -48,11 +45,10 @@ function Use({ latitude, longitude}) {
                 <div className="form_one">
                     <form action="" className="form_one" onSubmit={sendMessage}>
                     <p>Archives Parking</p>
-                    <input value={name} onChange={(e) => {setName(e.target.value)}} className="fill" type="text" placeholder="Please enter your name"/>
-                    <input value={email} onChange={(e) => {setEmail(e.target.value)}} className="fill" type="text" placeholder="Please enter your email address"/>
-                    <input value={phone} onChange={(e) => {setPhone(e.target.value)}} className="fill" type="text" placeholder="Please enter your phone number"/>
-                    <input value={plate} onChange={(e) => {setPlate(e.target.value)}} type="text" className="fill" placeholder="Please enter your car plate number"/>
-                    <input value={pin} onChange={(e) => {setPin(e.target.value)}} className="fill" placeholder="Please enter a pin" type="text"/>
+                    <input value={name} onChange={(e) => {setName(e.target.value)}} className="fill" type="text" placeholder="Enter name"/>
+                    <input value={phone} onChange={(e) => {setPhone(e.target.value)}} className="fill" type="text" placeholder="Enter phone number"/>
+                    <input value={plate} onChange={(e) => {setPlate(e.target.value)}} type="text" className="fill" placeholder="Enter car plate number"/>
+                    <input value={pin} onChange={(e) => {setPin(e.target.value)}} className="fill" placeholder="Enter a pin" type="text"/>
                     <input className="pile" type="submit" value="Submit"/>
                     </form>
                 </div>

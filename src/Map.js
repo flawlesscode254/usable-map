@@ -29,7 +29,6 @@ function Map() {
             parking: doc.data().parking
           })))
   }) 
-
   
   return (
     <div>

@@ -51,7 +51,8 @@ function Use({ latitude, longitude, parking, city}) {
                 } position="right center" modal nested>
                 <div className="form_one">
                     <form action="" className="form_one" onSubmit={sendMessage}>
-                    <p>Archives Parking</p>
+                    <p>{parking}</p>
+                    <p>{city}</p>
                     <input value={name} onChange={(e) => {setName(e.target.value)}} className="fill" type="text" placeholder="Enter name"/>
                     <input value={phone} onChange={(e) => {setPhone(e.target.value)}} className="fill" type="text" placeholder="Enter phone number"/>
                     <input value={email} onChange={(e) => {setEmail(e.target.value)}} className="fill" type="text" placeholder="Enter email address"/>

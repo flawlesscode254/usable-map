@@ -24,7 +24,9 @@ function Map() {
           {
             id: doc.id, 
             latitude: doc.data().latitude,
-            longitude: doc.data().longitude
+            longitude: doc.data().longitude,
+            city: doc.data().city,
+            parking: doc.data().parking
           })))
   }) 
 
@@ -38,10 +40,12 @@ function Map() {
       onViewportChange={nextViewport => setViewport(nextViewport)}
     >
       
-      {messages.map(({latitude, longitude}) => (
+      {messages.map(({latitude, longitude, city, parking}) => (
           <Use
             latitude={latitude}
             longitude={longitude}
+            city={city}
+            parking={parking}
           />
       ))}
       </ReactMapGL>

@@ -4,9 +4,10 @@ import { Marker } from 'react-map-gl'
 import { db } from './Firebase'
 import './App.css'
 
-function Use({ latitude, longitude}) {
+function Use({ latitude, longitude, parking, city}) {
     const [name, setName] = useState('')
     const [phone, setPhone] = useState('')
+    const [email, setEmail] = useState('')
     const [plate, setPlate] = useState('')
     const [pin, setPin] = useState('')
 
@@ -17,6 +18,9 @@ function Use({ latitude, longitude}) {
         db.collection('orders').add({
           name: name,
           phone: phone,
+          city: city,
+          parking: parking,
+          email: email,
           plate: plate,
           pin: pin,
           code: security
@@ -24,6 +28,7 @@ function Use({ latitude, longitude}) {
         .then(
           setName(''),
           setPhone(''),
+          setEmail(''),
           setPlate(''),
           setPin(''),
         )
@@ -36,6 +41,8 @@ function Use({ latitude, longitude}) {
         <div>
             <Marker latitude={latitude} longitude={longitude} offsetLeft={-12} offsetTop={-24}>
                 <div className="marker">
+                  <p style={{opacity: 0}}>{parking}</p>
+                  <p style={{opacity: 0}}>{city}</p>
                 <Popup contentStyle={{
                     borderRadius: 25,
                     padding: 35,
@@ -47,6 +54,7 @@ function Use({ latitude, longitude}) {
                     <p>Archives Parking</p>
                     <input value={name} onChange={(e) => {setName(e.target.value)}} className="fill" type="text" placeholder="Enter name"/>
                     <input value={phone} onChange={(e) => {setPhone(e.target.value)}} className="fill" type="text" placeholder="Enter phone number"/>
+                    <input value={email} onChange={(e) => {setEmail(e.target.value)}} className="fill" type="text" placeholder="Enter email address"/>
                     <input value={plate} onChange={(e) => {setPlate(e.target.value)}} type="text" className="fill" placeholder="Enter car plate number"/>
                     <input value={pin} onChange={(e) => {setPin(e.target.value)}} className="fill" placeholder="Enter a pin" type="text"/>
                     <input className="pile" type="submit" value="Submit"/>

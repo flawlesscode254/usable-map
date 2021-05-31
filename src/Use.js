@@ -23,7 +23,8 @@ function Use({ latitude, longitude, parking, city}) {
           email: email,
           plate: plate,
           pin: pin,
-          code: security
+          code: security,
+          state: "Space Booked"
         })
         .then(
           setName(''),

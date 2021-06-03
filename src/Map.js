@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState ,useEffect } from 'react';
 import ReactMapGL from 'react-map-gl';
 import './App.css'
 import 'reactjs-popup/dist/index.css';
@@ -18,6 +18,7 @@ function Map() {
     zoom: 15
   });
 
+  useEffect(() => {
   db.collection('coordinates')
       .onSnapshot(snapshot => {
         setMessages(snapshot.docs.map(doc => (
@@ -26,9 +27,13 @@ function Map() {
             latitude: doc.data().latitude,
             longitude: doc.data().longitude,
             city: doc.data().city,
-            parking: doc.data().parking
+            parking: doc.data().parking,
+            spaces: doc.data().spaces
           })))
   }) 
+  }, [])
+
+  
   
   return (
     <div>
@@ -39,12 +44,13 @@ function Map() {
       onViewportChange={nextViewport => setViewport(nextViewport)}
     >
       
-      {messages.map(({latitude, longitude, city, parking}) => (
+      {messages.map(({latitude, longitude, city, parking, spaces}) => (
           <Use
             latitude={latitude}
             longitude={longitude}
             city={city}
             parking={parking}
+            spaces={spaces}
           />
       ))}
       </ReactMapGL>
